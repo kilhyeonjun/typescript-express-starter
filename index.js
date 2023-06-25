@@ -53,12 +53,16 @@ app.delete("/users", (req, res) => {
 });
 
 app.get("/users", (req, res) => {
-  knex
-    .select()
-    .from("users")
-    .then((users) => {
-      res.send(users);
-    });
+  // knex
+  //   .select()
+  //   .from("users")
+  //   .then((users) => {
+  //     res.send(users);
+  //   });
+
+  knex.raw("select * from users").then((result) => {
+    res.send(result.rows);
+  });
 });
 
 app.listen("8080", () => {
