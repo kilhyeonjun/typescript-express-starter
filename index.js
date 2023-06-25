@@ -9,11 +9,25 @@ app.get("/", (req, res) => {
 });
 
 app.post("/users", (req, res) => {
-  knex("users")
-    .insert({
-      first_name: "penguin",
-      last_name: "kil",
-    })
+  // knex("users")
+  //   .insert({
+  //     first_name: "penguin",
+  //     last_name: "kil",
+  //   })
+  //   .then(() => {
+  //     knex
+  //       .select()
+  //       .from("users")
+  //       .then((users) => {
+  //         res.send(users);
+  //       });
+  //   });
+
+  knex
+    .raw("insert into users (first_name, last_name) values(?,?)", [
+      "first",
+      " last",
+    ])
     .then(() => {
       knex
         .select()
